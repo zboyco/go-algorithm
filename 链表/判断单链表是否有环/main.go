@@ -15,23 +15,19 @@ func main() {
 		last = last.next
 	}
 	last.next = list.next.next.next
-	fmt.Println(hasCircle(list))
+	fmt.Println(isLoop(list))
 }
 
-func hasCircle(head *node) bool {
+func isLoop(head *node) bool {
 	slow := head.next
 	fast := head.next.next
-	for slow != nil && fast != nil {
+	for fast != nil && fast.next != nil {
 		fmt.Println(slow.value, fast.value)
 		if slow == fast {
 			return true
 		}
 		slow = slow.next
-		fast = fast.next
-		if fast == nil {
-			return false
-		}
-		fast = fast.next
+		fast = fast.next.next
 	}
 	return false
 }
