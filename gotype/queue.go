@@ -4,22 +4,22 @@ import (
 	"errors"
 )
 
-type node struct {
+type queueNode struct {
 	value interface{}
-	next  *node
+	next  *queueNode
 }
 
 type LinkedQueue struct {
 	size int
-	head *node
-	tail *node
+	head *queueNode
+	tail *queueNode
 }
 
 func (q *LinkedQueue) Enqueue(v interface{}) {
 	if q.tail == nil {
-		q.tail = &node{value: v}
+		q.tail = &queueNode{value: v}
 	} else {
-		q.tail.next = &node{value: v}
+		q.tail.next = &queueNode{value: v}
 		q.tail = q.tail.next
 	}
 	if q.head == nil {

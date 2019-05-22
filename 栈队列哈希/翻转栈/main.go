@@ -7,19 +7,25 @@ import (
 )
 
 func main() {
-	s1 := &gotype.LinkedStack{}
-	s1.Push(1)
-	s1.Push(2)
-	s1.Push(3)
-	s1.Push(4)
-	s1.Push(5)
-	fmt.Println(s1.Top())
-
-	s2 := &gotype.LinkedStack{}
-	v, _ := s1.Pop()
-	for v != nil {
-		s2.Push(v)
-		v, _ = s1.Pop()
+	s := &gotype.LinkedStack{}
+	for i := 0; i < 10; i++ {
+		s.Push(i)
 	}
-	fmt.Println(s2.Top())
+	reverseStack(s)
+	for !s.IsEmpty() {
+		fmt.Println(s.Pop())
+	}
+}
+
+func reverseStack(s *gotype.LinkedStack) {
+	if s.Size() < 2 {
+		return
+	}
+	top1, _ := s.Pop()
+	reverseStack(s)
+	top2, _ := s.Pop()
+	reverseStack(s)
+	s.Push(top1)
+	reverseStack(s)
+	s.Push(top2)
 }

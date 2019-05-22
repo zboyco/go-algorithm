@@ -4,21 +4,21 @@ import (
 	"errors"
 )
 
-type node struct {
+type stackNode struct {
 	value interface{}
-	next  *node
+	next  *stackNode
 }
 
 type LinkedStack struct {
-	head *node
+	head *stackNode
 	size int
 }
 
 func (s *LinkedStack) Push(v interface{}) {
 	if s.head == nil {
-		s.head = &node{}
+		s.head = &stackNode{}
 	}
-	newNode := &node{value: v, next: s.head.next}
+	newNode := &stackNode{value: v, next: s.head.next}
 	s.head.next = newNode
 	s.size++
 }
@@ -29,7 +29,7 @@ func (s *LinkedStack) Size() int {
 
 func (s *LinkedStack) Pop() (interface{}, error) {
 	if s.head == nil {
-		s.head = &node{}
+		s.head = &stackNode{}
 	}
 	if s.head.next == nil {
 		return nil, errors.New("nil stack")
@@ -42,7 +42,7 @@ func (s *LinkedStack) Pop() (interface{}, error) {
 
 func (s *LinkedStack) Top() (interface{}, error) {
 	if s.head == nil {
-		s.head = &node{}
+		s.head = &stackNode{}
 	}
 	if s.head.next == nil {
 		return nil, errors.New("nil stack")
