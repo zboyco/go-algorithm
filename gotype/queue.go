@@ -1,8 +1,7 @@
-package main
+package gotype
 
 import (
 	"errors"
-	"fmt"
 )
 
 type node struct {
@@ -62,19 +61,4 @@ func (q *LinkedQueue) IsEmpty() bool {
 
 func (q *LinkedQueue) Size() int {
 	return q.size
-}
-
-func main() {
-	queue := &LinkedQueue{}
-	fmt.Println(queue.IsEmpty())
-	fmt.Println(queue.Size())
-	for i := 0; i < 10; i++ {
-		queue.Enqueue(i)
-	}
-	fmt.Println(queue.IsEmpty())
-	fmt.Println(queue.Size())
-	for i := 0; i < 11; i++ {
-		fmt.Println(queue.GetFront())
-		fmt.Println(queue.Dequeue())
-	}
 }
