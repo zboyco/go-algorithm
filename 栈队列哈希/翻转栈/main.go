@@ -36,5 +36,25 @@ func reverseStack1(s *gotype.LinkedStack) {
 }
 
 func reverseStack2(s *gotype.LinkedStack) {
+	// 长度小于2不用翻转
+	if s.Size() < 2 {
+		return
+	}
+	// 取出顶元素
+	top, _ := s.Pop()
+	// 翻转
+	reverseStack2(s)
+	// 把取出的元素放入栈底部
+	pushToBottom(s, top)
+}
 
+func pushToBottom(s *gotype.LinkedStack, v interface{}) {
+	// 长度等于0不用处理
+	if s.Size() == 0 {
+		s.Push(v)
+		return
+	}
+	top, _ := s.Pop()
+	pushToBottom(s, v)
+	s.Push(top)
 }
