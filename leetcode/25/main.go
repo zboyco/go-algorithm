@@ -6,7 +6,7 @@ func main() {
 	fmt.Println("25")
 	head := &ListNode{}
 	curr := head
-	for i := 0; i < 11; i++ {
+	for i := 0; i < 6; i++ {
 		curr.Next = &ListNode{
 			Val: i + 1,
 		}
@@ -21,7 +21,7 @@ func main() {
 
 	fmt.Print("\r\n")
 
-	curr = reverseKGroup(head.Next, 3)
+	curr = reverseKGroup(head.Next, 2)
 	for curr != nil {
 		fmt.Print(curr.Val, "->")
 		curr = curr.Next
@@ -37,27 +37,26 @@ type ListNode struct {
 func reverseKGroup(head *ListNode, k int) *ListNode {
 	var prev *ListNode
 	curr := head
-	var next *ListNode
 
 	for i := 0; i < k; i++ {
 		if curr == nil {
 			curr = prev
 			prev = nil
 			for curr != nil {
-				next = curr.Next
+				next := curr.Next
 				curr.Next = prev
 				prev = curr
 				curr = next
 			}
 			return head
 		}
-		next = curr.Next
+		next := curr.Next
 		curr.Next = prev
 		prev = curr
 		curr = next
 	}
 
-	head.Next = reverseKGroup(next, k)
+	head.Next = reverseKGroup(curr, k)
 
 	return prev
 }
