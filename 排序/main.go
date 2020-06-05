@@ -6,7 +6,7 @@ func main() {
 	fmt.Println("排序算法")
 	list := []int{16, 4, 3, 1, 9, 5, 1, 34, 7, 64, 24, 76, 987, 32}
 	fmt.Println(list)
-	kuaisu(list)
+	charu(list)
 	fmt.Println(list)
 }
 
@@ -43,6 +43,8 @@ func charu(list []int) {
 		for k := i; k > 0; k-- {
 			if list[k] < list[k-1] {
 				list[k], list[k-1] = list[k-1], list[k]
+			} else {
+				break
 			}
 		}
 	}

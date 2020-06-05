@@ -16,7 +16,7 @@ func main() {
 
 	node := list.next.next.next.next.next
 
-	deleteNode(node)
+	deleteNode2(node)
 
 	printNode(list)
 }
@@ -32,6 +32,15 @@ func deleteNode(n *node) error {
 		n = n.next
 	}
 	pre.next = nil
+	return nil
+}
+
+func deleteNode2(n *node) error {
+	if n == nil || n.next == nil {
+		return errors.New("nil or last node")
+	}
+	n.value = n.next.value
+	n.next = n.next.next
 	return nil
 }
 
